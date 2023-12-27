@@ -23,13 +23,13 @@ class Student:
 
     def srgr(self):
         grade_counter = 0
-        if not grade_counter:
+        if not self.grades:
             return 'нет оценок'
-        else:
-            for i in self.grades.values():
-                for j in i:
-                    grade_counter += j
-            return float(grade_counter / len(self.grades))
+        list = []
+        for i in self.grades:
+            grade_counter += len(self.grades[i])
+            list.extent(i)
+        return float(sum(list) / max(len(self.list), 1))
 
     def __srt__(self):
         finished_courses = ', '.join(self.finished_courses)
@@ -41,7 +41,12 @@ class Student:
               f'Курсы в процессе обучения: {courses_in_progress}\n' \
               f'Завершенные курсы: {finished_courses}'      
         
-        
+    def __lt__(self, other):
+        if not isinstance(other, Student):
+            print('Такое сравнение некорректно')
+            return
+        return self.srgr < other.srgr
+    
 class Mentor:
     def __init__(self, name, surname):
         self.name = name
@@ -56,16 +61,16 @@ class Lecture(Mentor):
 
     def srgr(self):
         grade_counter = 0
-        if not grade_counter:
+        if not self.grades:
             return 'нет оценок'
-        else:
-            for i in self.grades.values():
-                for j in i:
-                    grade_counter += j
-            return float(grade_counter / len(self.grades))  
+        list = []
+        for i in self.grades.values():
+            grade_counter += len(self.grades[i])
+            list.extent(i)
+            return float(sum(list)/max(len(list), 1)) 
 
     def __str__(self):
-        res = f'Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за лекции: {self.srgr()}'
+        res = f'Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за лекции: {self.srgr}'
         return res  
 
 class  Reviewer(Mentor):
@@ -86,31 +91,31 @@ class  Reviewer(Mentor):
         return res
 
 
-student_1 = Student('Ruoy', 'Eman',)
+student_1 = Student('Ruoy', 'Eman', 'm')
 student_1.courses_in_progress += ['Python']
 student_1.finished_courses += ['Введение в программирование']
 
-student_2 = Student('Ivan', 'Ivanov')
+student_2 = Student('Ivan', 'Ivanov', 'm')
 student_2.courses_in_progress += ['Java']
 student_2.finished_courses += ['Введение в программирование']
 
-student_3 = Student('Maria', 'Alekseeva')
+student_3 = Student('Maria', 'Alekseeva', 'f')
 student_3.courses_in_progress += ['Python']
 student_3.finished_courses += ['Введение в программирование']
 
-best_lecture_1 = Lecture('Pavel', 'Pavlov')
+best_lecture_1 = Lecture('Pavel', 'Pavlov', 'm')
 best_lecture_1.courses_attached += ['Python']
 
-best_lecture_2 = Lecture('Katrin', 'Ivanova')
+best_lecture_2 = Lecture('Katrin', 'Ivanova', 'f')
 best_lecture_2.courses_attached += ['Java']
 
-best_lecture_3 = Lecture('Sergey', 'Sergeev')
+best_lecture_3 = Lecture('Sergey', 'Sergeev', 'm')
 best_lecture_3.courses_attached += ['Python']
 
-nice_reviewer_1 = Reviewer('Some', 'Buddy')
+nice_reviewer_1 = Reviewer('Some', 'Buddy', )
 nice_reviewer_1.courses_attached += ['Python']
 
-nice_reviewer_2 = Reviewer('Sasha', 'Romanov')
+nice_reviewer_2 = Reviewer('Sasha', 'Romanov',)
 nice_reviewer_2.courses_attached += ['Java']
 
 nice_reviewer_3 = Reviewer('Max', 'Aleksandrenko')
@@ -179,12 +184,8 @@ print(f'Результат сравнения лекторов по средне
 print()
 print()
 print()
-print(f'Средняя оценка за домашние задания по всем студентам: {student_1.srgr()}')
+print(f'Средняя оценка за домашние задания по всем студентам: {student_1.srgr}')
 print()
 print()
 print()
-print(f'Средняя оценка за лекции по всем лекторам: {best_lecture_1.srgr()}')       
-    
-
-
-        
+print(f'Средняя оценка за лекции по всем лекторам: {best_lecture_1.srgr}')       

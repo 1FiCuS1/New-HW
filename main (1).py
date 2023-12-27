@@ -84,7 +84,7 @@ class  Reviewer(Mentor):
         return res
 
 
-student_1 = Student('Ruoy', 'Eman',)
+student_1 = Student('Ruoy', 'Eman')
 student_1.courses_in_progress += ['Python']
 student_1.finished_courses += ['Введение в программирование']
 
