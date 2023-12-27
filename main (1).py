@@ -26,6 +26,16 @@ class Mentor:
       else:
           return 'Ошибка'
 
+class Lecture(Mentor):
+    super().__init__(self, name, surname)
+
+class  Reviewer(Mentor):
+    super().__init__(self, name, surname)
+    
+
+
+
+
 best_student = Student('Ruoy', 'Eman', 'your_gender')
 best_student.courses_in_progress += ['Python']
 
